@@ -1,4 +1,4 @@
-var popsicle = require('popsicle')
+var NodeRequest = require('request')
 
 /**
  * Make a request using node.
@@ -10,17 +10,17 @@ var popsicle = require('popsicle')
  * @returns {Promise}
  */
 module.exports = function request (method, url, body, headers) {
-  return popsicle.fetch(url, {
-    body: body,
-    method: method,
-    headers: headers
-  }).then(function (res) {
-    return res.text()
-      .then(body => {
-        return {
-          status: res.status,
-          body: body
-        }
-      })
-  })
+  return new Promise((resolve, reject) => {
+    NodeRequest({
+      url,
+      body: body,
+      method: method,
+      headers: headers
+    }, function (error, response, body) {
+      resolve({
+        status: response.status,
+        body: body
+      });
+    })
+  });
 }

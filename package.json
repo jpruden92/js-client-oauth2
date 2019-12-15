@@ -65,7 +65,7 @@
     "watchify": "^3.7.0"
   },
   "dependencies": {
-    "popsicle": "12.0.4",
+    "request": "^2.88.0",
     "safe-buffer": "^5.1.1"
   }
 }

@@ -613,7 +613,13 @@ CodeFlow.prototype.getToken = function (uri, opts) {
   }
 
   var headers = Object.assign({}, DEFAULT_HEADERS)
-  var body = { code: data.code, grant_type: 'authorization_code', redirect_uri: options.redirectUri }
+  var body = {
+    code: data.code,
+    grant_type: 'authorization_code',
+    redirect_uri: options.redirectUri,
+    client_id: options.clientId,
+    client_secret: options.clientSecret
+  }
 
   // `client_id`: REQUIRED, if the client is not authenticating with the
   // authorization server as described in Section 3.2.1.
